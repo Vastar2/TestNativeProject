@@ -1,32 +1,41 @@
-import React from 'react';
-import {Text, View, FlatList} from 'react-native';
+import React, {FC} from 'react';
+import {Text, ScrollView, View, FlatList, Image} from 'react-native';
 import {styles} from '../styles/styles';
 
-const Gallery = ({temp}: {temp: string}) => {
-  const Data = [
-    {id: '1', name: 'John'},
-    {id: '2', name: 'Jane'},
-    {id: '3', name: 'Alice'},
-    {id: '4', name: 'Poul'},
-    {id: '5', name: 'Max'},
-    {id: '6', name: 'Anton'},
-  ];
+interface GalleryProps {
+  queryName: string;
+  currentData: any[];
+}
 
-  const renderListItem = ({item}: {item: {id: string; name: string}}) => (
-    <View>
-      <Text>{item.name}</Text>
+const Gallery: FC<GalleryProps> = ({queryName, currentData}) => {
+  const renderListItem = ({
+    item,
+  }: {
+    item: {id: string; description: string; urls: {raw: string}};
+  }) => (
+    <View style={styles.imagesItem}>
+      <Image source={{uri: item.urls.raw}} style={styles.image} />
+      <Text style={styles.description}>
+        {item.description || `Just a ${queryName}`}
+      </Text>
     </View>
   );
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{temp || 'Some text'}</Text>
+    <ScrollView style={styles.container}>
+      <Text style={styles.title}>
+        {`${queryName[0].toUpperCase()}${queryName.slice(
+          1,
+          queryName.length,
+        )}` || 'Some text'}
+      </Text>
       <FlatList
-        data={Data}
+        data={currentData}
         renderItem={renderListItem}
         keyExtractor={item => item.id}
+        contentContainerStyle={styles.imagesList}
       />
-    </View>
+    </ScrollView>
   );
 };
 

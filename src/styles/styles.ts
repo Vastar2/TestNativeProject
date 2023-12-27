@@ -2,16 +2,14 @@ import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    padding: 14,
+    paddingVertical: 14,
   },
   title: {
     fontSize: 24,
-    textAlign: 'left',
+    textAlign: 'center',
     fontWeight: 'bold',
-    marginBottom: 14,
+    marginBottom: 20,
+    color: 'orange',
   },
   listItem: {
     padding: 10,
@@ -45,10 +43,26 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  imagesList: {
+    paddingHorizontal: 14,
+  },
+  imagesItem: {
+    width: '100%',
+    marginBottom: 20,
+  },
+  description: {
+    marginTop: 8,
+  },
+  image: {
+    width: '100%',
+    height: 260,
+    borderRadius: 10,
+  },
   footer: {
     padding: 14,
     borderTopWidth: 1,
     borderTopColor: '#ccc',
     marginTop: 'auto',
+    backgroundColor: '#fff',
   },
 });
